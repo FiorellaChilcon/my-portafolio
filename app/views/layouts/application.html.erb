@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>MyPortafolio</title>
+  <script src="https://kit.fontawesome.com/0325233556.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@200;300&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+  <nav>
+    <%= link_to '/' do %>
+    <div class="home-link">
+      <span>&lt;</span> HOME <span>/&gt;</span>
+    </div>
+    <% end %>
+    <%= link_to about_me_path do %>
+    <div class="about-me-link">
+      <span>&lt;</span> ABOUT ME <span>/&gt;</span>
+    </div>
+    <% end %>
+    <%= link_to projects_path do %>
+    <div class="projects-link">
+      <span>&lt;</span> PROJECTS <span>/&gt;</span>
+    </div>
+    <% end %>
+    <%= link_to skills_path do %>
+    <div class="skills-link">
+      <span>&lt;</span> SKILLS <span>/&gt;</span>
+    </div>
+    <% end %>
+  </nav>
+  <%= yield %>
+</body>
+
+</html>
