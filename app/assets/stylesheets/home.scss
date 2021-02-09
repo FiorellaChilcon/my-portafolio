@@ -7,16 +7,22 @@ body {
   font-family: 'Questrial', sans-serif;
 }
 
+@mixin flex($direction) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: $direction;
+}
+
 .intro-main {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  @include flex(column);
   box-sizing: border-box;
   height: calc(100vh - 265px);
   // background-image: url("bg_code.jpg");
-  background
+  @media (max-width: 620px) {
+    height: calc(100vh - 305px);
+  }
   h1, h2 {
     cursor: pointer;
     letter-spacing: 2px;
@@ -28,11 +34,19 @@ body {
     font-weight: 300;
     font-size: 65px;
     animation: neon 8s ease-in-out infinite;
+    @media (max-width: 620px) {
+      font-size: 40px;
+      animation: neon-mobile 8s ease-in-out infinite;
+    }
   }
   h2 {
     font-weight: 200;
     font-size: 30px;
     animation: neon-inverse 8s ease-in-out infinite;
+    @media (max-width: 620px) {
+      animation: neon-inverse-mobile 8s ease-in-out infinite;
+      font-size: 17px;
+    }
   }
 }
 
@@ -45,15 +59,23 @@ nav {
   justify-content: space-evenly;
   align-items: center;
   a {
+    width: 153px;
+    display: flex;
+    justify-content: center;
     text-decoration: none;
+    @media (max-width: 620px) {
+      width: 140px;
+    }
+  }
+  @media (max-width: 620px) {
+    margin: 10px 0;
+    height: 120px;
   }
   div {
+    width: fit-content;
     height: 50px;
     padding: 0 18px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    @include flex(row);
     cursor: pointer;
     box-shadow: 5px 10px 14px 7px rgba(0,0,0,0.48);
     -webkit-box-shadow: 5px 10px 14px 7px rgba(0,0,0,0.48);
@@ -72,6 +94,12 @@ nav {
     }
      &:hover span:last-child {
       margin-left: 4px;
+    }
+    @media (max-width: 620px) {
+      font-size: 12px;
+      height: 36px;
+      padding: 0 14px;
+      margin: 7px;
     }
   }
   .home-link {
@@ -113,6 +141,22 @@ nav {
   }
 }
 
+@keyframes neon-mobile {
+  from {
+    text-shadow: 0px 0px 6px  rgba(255, 0, 98, 0.99);
+  }
+  30% {
+    text-shadow: 0px 0px 6px  rgba(0, 162, 255, 0.99);
+  }
+  60% {
+    font-size: 20px;
+    text-shadow: 0px 0px 6px rgba(9, 255, 0, 0.99);
+  }
+  100% {
+    font-size: 40px;
+    text-shadow: 0px 0px 6px rgba(250, 54, 28, 0.99);
+  }
+}
 
 @keyframes neon-inverse {
   60% {
@@ -123,39 +167,57 @@ nav {
   }
 }
 
+
+@keyframes neon-inverse-mobile {
+  60% {
+    font-size: 25px;
+  }
+  100% {
+    font-size: 17px;
+  }
+}
+
 footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex(column);
   height: 165px;
-  flex-direction: column;
   div:last-child {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
+    @include flex(column);
     i {
       font-size: 20px;
-      margin: 6px;
+      margin: 0 6px;
       &:hover { 
         font-size: 22px;
       }
     }
   }
   div:first-child {
+    width: 80px;
+    height: 35px;
+    justify-content: space-between;
     display: flex;
     flex-direction: row;
     i {
       font-size: 25px;
-      margin: 8px;
+      margin: 0 8px;
       &:hover { 
         font-size: 27px;
       }
     }
   }
   span {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     cursor: pointer;
     font-size: 15px;
     color: white;
+    height: 35px;
+  }
+  span:first-child {
+    width: 130px;
+  }
+  span:last-child {
+    width: 238px;
   }
   i {
     cursor: pointer;
@@ -167,18 +229,21 @@ footer {
   color: #0B66C3;
 }
 
-.fa-github:hover {
-  color: white;
-  text-shadow: white;
+.fa-mobile-alt:hover {
+  color: #ff4b14;
+}
+
+.fa-envelope:hover {
+  color: rgb(5, 183, 214);
 }
 
 // about me view
 .about-section {
   height: calc(100vh - 265px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include flex(column);
+  @media (max-width: 620px) {
+    height: auto;
+  }
   .about-text {
     margin-top: 20px;
     text-align: center;
@@ -188,6 +253,9 @@ footer {
     max-width: 700px;
     font-size: 18px;
     line-height: 30px;
+    @media (max-width: 620px) {
+      font-size: 14px;
+    }
   }
   img {
     margin: 20px 0;
@@ -203,20 +271,9 @@ footer {
       -ms-transform: rotate(360deg);
       transform: rotate(360deg);
     }
-  }
-}
-
-@media (max-width: 620px) {
-  nav div {
-    margin: 15px;
-  }
-  .about-section {
-    img {
-      height: 230px;
+    @media (max-width: 620px) {
+      height: 200px;
     }
-  }
-  .about-section, nav {
-    height: auto;
   }
 }
 
@@ -227,8 +284,11 @@ footer {
 }
 
 .projects-section {
-  margin-top: 40px;
+  margin-top: 45px;
   flex-wrap: wrap;
+  @media (max-width: 620px) {
+    margin-top: 15px;
+  }
   article {
     margin: 20px;
     border-radius: 25px;
@@ -273,6 +333,7 @@ footer {
 .skills {
   width: 100%;
   height: auto;
+  margin-top: 15px;
 }
 
 .skills-content {
